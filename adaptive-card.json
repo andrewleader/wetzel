@@ -2,42 +2,11 @@
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://adaptivecards.io/schemas/adaptive-card.json",
   "type": "object",
-  "title": "Microsoft Adaptive Card Schema",
-  "title": "Card schema for the adaptive card.",
-  "properties": {
-    "type": {
-      "type": "string",
-      "enum": [
-        "AdaptiveCard"
-      ]
-    },
-    "title": {
-      "type": "string",
-      "title": "Title/caption for the adaptive card."
-    },
-    "body": {
-      "$ref": "#/definitions/CardElements"
-    },
-    "actions": {
-      "$ref": "#/definitions/Actions"
-    },
-    "version": {
-      "type": "string",
-      "title": "version of schema that this card was authored "
-    },
-    "minVersion": {
-      "type": "string",
-      "title": "if a client doesn't support the minVersion the card should be rejected.  If it does, then the elements that are not supported are safe to ignore"
-    },
-    "fallbackText": {
-      "type": "string",
-      "title": "if a client is not able to show the card, show fallbackText to the user. This can be in markdown format. "
+  "title": "Adaptive Card schema",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/AdaptiveCard"
     }
-  },
-  "required": [
-    "type",
-    "body",
-    "version"
   ],
   "definitions": {
     "Action": {
@@ -58,7 +27,7 @@
     },
     "Action.Http": {
       "title": "Http Action",
-      "additionalProperties": false,      
+      "additionalProperties": false,
       "description": "Action.Http represents the properties needed to do an Http request. All input properties are available for use via data binding. Properties can be data bound to the Uri and Body properties, allowing you to send a request to an arbitrary url.",
       "properties": {
         "type": {
@@ -138,9 +107,6 @@
         "title": {
           "type": "string",
           "title": "Label for button or link that represents this action"
-        },
-        "card": {
-          "$ref": "#/definitions/AdaptiveCard"
         }
       },
       "required": [
@@ -225,9 +191,6 @@
         },
         {
           "$ref": "#/definitions/Image"
-        },
-        {
-          "$ref": "#/definitions/Container"
         },
         {
           "$ref": "#/definitions/ColumnSet"
